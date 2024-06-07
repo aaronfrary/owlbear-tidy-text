@@ -10,12 +10,13 @@ toggling the visibility of image labels.
 With the tool selected, clicking on an object (prop, character, etc.)
 either hides an existing label or restores a hidden label.
 
-Adding new text (in the usual manner) will overwrite any hidden text.
-
 The extension also includes "hide all" and "show all" buttons that can be
 used while the tool is active.
 
-## Building
+If new text is added to an object that already has hidden text, the texts
+are concatenated on hide/show to avoid losing any data.
+
+## Development
 
 To install dependencies run:
 

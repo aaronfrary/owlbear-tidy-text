@@ -29,9 +29,14 @@ function getHiddenText(item: Image) {
 // Save and hide existing text
 function stowImageText(items: Image[]) {
   for (let item of items) {
-    const text = item.text
-    if (text.type === "PLAIN" && text.plainText) {
-      item.metadata[getPluginId("metadata")] = { tidytext: text.plainText }
+    let textToSave = item.text.plainText
+    if (textToSave && item.text.type === "PLAIN") {
+      // If there's already hidden text, concatenate them so no data is lost
+      const hiddenText = getHiddenText(item)
+      if (hiddenText && hiddenText !== textToSave) {
+        textToSave = [hiddenText, textToSave].join('\n')
+      }
+      item.metadata[getPluginId("metadata")] = { tidytext: textToSave }
       item.text.plainText = ""
     }
   }
@@ -40,10 +45,15 @@ function stowImageText(items: Image[]) {
 // Show previously hidden text
 function restoreImageText(items: Image[]) {
   for (let item of items) {
-    const hiddenText = getHiddenText(item)
-    if (hiddenText && item.text.type === "PLAIN") {
+    let textToShow = getHiddenText(item)
+    if (textToShow && item.text.type === "PLAIN") {
+      // If there's already label text, concatenate them so no data is lost
+      const labelText = item.text.plainText
+      if (labelText && labelText !== textToShow) {
+        textToShow = [labelText, textToShow].join('\n')
+      }
       item.metadata[getPluginId("metadata")] = { tidytext: undefined }
-      item.text.plainText = hiddenText
+      item.text.plainText = textToShow
     }
   }
 }

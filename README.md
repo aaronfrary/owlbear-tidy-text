@@ -3,6 +3,8 @@
 An extension for [Owlbear Rodeo](https://www.owlbear.rodeo/) to allow
 toggling the visibility of image labels.
 
+![Interface Demo](./docs/demo.gif)
+
 ## Usage
 
 With the tool selected, clicking on an object (prop, character, etc.)
@@ -22,6 +24,10 @@ To install dependencies run:
 To run in development mode run:
 
 `npm run dev`
+
+To build for deployment run:
+
+`npm run build`
 
 ## License
 

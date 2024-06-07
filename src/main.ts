@@ -1,43 +1,49 @@
-import OBR, { TextContent, Image, isImage, buildLabel } from "@owlbear-rodeo/sdk"
+import OBR, { Image, isImage } from "@owlbear-rodeo/sdk"
 
 /**
  * This file represents the background script run when the plugin loads.
  * It creates the tool and associated modes and actions.
+ *
+ * The tool hides text by copying it into the item's metadata and then
+ * overwriting it with the empty string, and restores text by reversing
+ * this process.
+ *
+ * For simplicity the tool only operates on plain text, not rich text.
+ * As far as I'm aware (in June 2024) label text is always plain text,
+ * so this shouldn't be an issue.
  */
-
-interface ItemMetadata {
-  tidytext?: TextContent
-}
 
 // Get the reverse domain name id for this plugin at a given path
 function getPluginId(path: string) {
   return `rodeo.owlbear.tidy-text/${path}`
 }
 
-// Create a blank TextContent object
-function generateBlankTextContent() {
-  return buildLabel().build().text
+interface ItemMetadata {
+  tidytext?: string
+}
+function getHiddenText(item: Image) {
+  const metadata = item.metadata[getPluginId("metadata")] as ItemMetadata | undefined
+  return metadata?.tidytext
 }
 
 // Save and hide existing text
 function stowImageText(items: Image[]) {
   for (let item of items) {
-    if (item.text.plainText) {
-      item.metadata[getPluginId('metadata')] = { tidytext: item.text }
-      item.text = generateBlankTextContent()
+    const text = item.text
+    if (text.type === "PLAIN" && text.plainText) {
+      item.metadata[getPluginId("metadata")] = { tidytext: text.plainText }
+      item.text.plainText = ""
     }
   }
 }
 
 // Show previously hidden text
 function restoreImageText(items: Image[]) {
-  const id = getPluginId('metadata')
   for (let item of items) {
-    const metadata = item.metadata[id] as ItemMetadata | undefined
-    const hiddenText = metadata?.tidytext
-    if (hiddenText) {
-      item.metadata[id] = { tidytext: undefined }
-      item.text = hiddenText
+    const hiddenText = getHiddenText(item)
+    if (hiddenText && item.text.type === "PLAIN") {
+      item.metadata[getPluginId("metadata")] = { tidytext: undefined }
+      item.text.plainText = hiddenText
     }
   }
 }

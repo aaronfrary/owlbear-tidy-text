@@ -1,9 +1,13 @@
-import OBR, { Image, isImage, buildLabel } from "@owlbear-rodeo/sdk"
+import OBR, { TextContent, Image, isImage, buildLabel } from "@owlbear-rodeo/sdk"
 
 /**
  * This file represents the background script run when the plugin loads.
  * It creates the tool and associated modes and actions.
  */
+
+interface ItemMetadata {
+  tidytext?: TextContent
+}
 
 // Get the reverse domain name id for this plugin at a given path
 function getPluginId(path: string) {
@@ -29,8 +33,8 @@ function stowImageText(items: Image[]) {
 function restoreImageText(items: Image[]) {
   const id = getPluginId('metadata')
   for (let item of items) {
-    const metadata = item.metadata[id] as any
-    const hiddenText = metadata.tidytext
+    const metadata = item.metadata[id] as ItemMetadata | undefined
+    const hiddenText = metadata?.tidytext
     if (hiddenText) {
       item.metadata[id] = { tidytext: undefined }
       item.text = hiddenText

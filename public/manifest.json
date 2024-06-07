@@ -1,0 +1,10 @@
+{
+  "name": "Tidy Text",
+  "version": "1.0.0",
+  "manifest_version": 1,
+  "author": "Aaron Frary",
+  "homepage_url": "https://github.com/aaronfrary/owlbear-tidy-text",
+  "icon": "/note.svg",
+  "background_url": "/",
+  "description": "A simple tool to toggle the visibility of image labels."
+}

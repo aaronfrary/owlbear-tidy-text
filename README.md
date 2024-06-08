@@ -1,9 +1,14 @@
 # Tidy Text
 
-An extension for [Owlbear Rodeo](https://www.owlbear.rodeo/) to allow
-toggling the visibility of image labels.
+A lightweight extension for [Owlbear Rodeo](https://www.owlbear.rodeo/)
+to quickly toggle the visibility of image labels.
 
 ![Interface Demo](./docs/demo.gif)
+
+## Installation
+
+Use the "Add Custom Extension" button in Owlbear Rodeo, then paste in
+`https://tidytext.toadkingdom.com/manifest.json` as the Install Link.
 
 ## Usage
 

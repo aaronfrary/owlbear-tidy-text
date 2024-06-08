@@ -6,5 +6,5 @@
   "homepage_url": "https://github.com/aaronfrary/owlbear-tidy-text",
   "icon": "/img/note.svg",
   "background_url": "/",
-  "description": "A simple tool to toggle the visibility of image labels."
+  "description": "A lightweight tool to quickly toggle the visibility of image labels."
 }

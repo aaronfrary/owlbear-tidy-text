@@ -67,6 +67,7 @@ function createTool() {
         label: "Toggle Image Labels",
       },
     ],
+    shortcut: "L",
   })
 }
 
@@ -120,6 +121,7 @@ function createActionHideAll() {
         },
       },
     ],
+    shortcut: "H",
     async onClick(_context, _elementId) {
       OBR.scene.items.updateItems(isImage, stowImageText)
     }
@@ -138,6 +140,7 @@ function createActionShowAll() {
         },
       },
     ],
+    shortcut: "A",
     async onClick(_context, _elementId) {
       OBR.scene.items.updateItems(isImage, restoreImageText)
     }

@@ -63,7 +63,7 @@ function createTool() {
     id: getPluginId("tool"),
     icons: [
       {
-        icon: "/note.svg",
+        icon: "/img/note.svg",
         label: "Toggle Image Labels",
       },
     ],
@@ -75,7 +75,7 @@ function createMode() {
     id: getPluginId("mode"),
     icons: [
       {
-        icon: "/note.svg",
+        icon: "/img/note.svg",
         label: "Toggle Image Label",
         filter: {
           activeTools: [getPluginId("tool")],
@@ -113,7 +113,7 @@ function createActionHideAll() {
     id: getPluginId("action-hide-all"),
     icons: [
       {
-        icon: "/hide.svg",
+        icon: "/img/hide.svg",
         label: "Hide All",
         filter: {
           activeTools: [getPluginId("tool")],
@@ -131,7 +131,7 @@ function createActionShowAll() {
     id: getPluginId("action-show-all"),
     icons: [
       {
-        icon: "/show.svg",
+        icon: "/img/show.svg",
         label: "Show All",
         filter: {
           activeTools: [getPluginId("tool")],

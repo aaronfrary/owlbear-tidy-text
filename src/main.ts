@@ -15,7 +15,7 @@ import OBR, { Image, isImage } from "@owlbear-rodeo/sdk"
 
 // Get the reverse domain name id for this plugin at a given path
 function getPluginId(path: string) {
-  return `rodeo.owlbear.tidy-text/${path}`
+  return `com.toadkingdom.tidytext/${path}`
 }
 
 interface ItemMetadata {

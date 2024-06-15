@@ -38,3 +38,5 @@ To build for deployment run:
 ## License
 
 MIT
+
+Vectors and icons by <a href="https://www.svgrepo.com" target="_blank">SVG Repo</a>
